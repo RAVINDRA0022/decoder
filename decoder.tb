@@ -1,0 +1,23 @@
+`timescale 1ns / 1ps
+
+module decoder_tb;
+    reg [2:0] in;
+    wire [7:0] out; 
+
+    decoder dut (
+        .in(in),
+        .out(out)
+    );
+
+    initial begin
+        in = 3'b000;
+
+        repeat (8) begin
+            #100; 
+            $display("Time: %0t | Input: %b | Output: %b", $time, in, out);
+            in = in + 1;
+        end
+
+        #100 $finish;
+    end
+endmodule
